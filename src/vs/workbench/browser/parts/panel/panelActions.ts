@@ -195,7 +195,7 @@ export class SwitchPanelItemAction extends Action {
 
 export class PreviousPanelItemAction extends SwitchPanelItemAction {
 	static readonly ID = 'workbench.action.previousPanelItem';
-	static LABEL = nls.localize('previousPanelItem', 'Previous Panel item');
+	static LABEL = nls.localize('previousPanelItem', 'Previous Panel Item');
 
 	constructor(id: string,
 		name: string,
@@ -211,7 +211,7 @@ export class PreviousPanelItemAction extends SwitchPanelItemAction {
 
 export class NextPanelItemAction extends SwitchPanelItemAction {
 	static readonly ID = 'workbench.action.nextPanelItem';
-	static LABEL = nls.localize('nextPanelItem', 'Next Panel item');
+	static LABEL = nls.localize('nextPanelItem', 'Next Panel Item');
 
 	constructor(id: string,
 		name: string,
