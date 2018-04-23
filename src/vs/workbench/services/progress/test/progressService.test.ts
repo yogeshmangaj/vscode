@@ -75,7 +75,7 @@ class TestPanelService implements IPanelService {
 		return [];
 	}
 
-	public getOrderedPanels(): any[] {
+	public getPinnedPanels(): any[] {
 		return [];
 	}
 
