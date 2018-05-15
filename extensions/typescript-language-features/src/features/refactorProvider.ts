@@ -18,8 +18,7 @@ class ApplyRefactoringCommand implements Command {
 	public readonly id = ApplyRefactoringCommand.ID;
 
 	constructor(
-		private readonly client: ITypeScriptServiceClient,
-		private readonly formattingOptionsManager: FormattingOptionsManager
+		private readonly client: ITypeScriptServiceClient
 	) { }
 
 	public async execute(
@@ -29,8 +28,6 @@ class ApplyRefactoringCommand implements Command {
 		action: string,
 		range: vscode.Range
 	): Promise<boolean> {
-		await this.formattingOptionsManager.ensureConfigurationForDocument(document, undefined);
-
 		const args: Proto.GetEditsForRefactorRequestArgs = {
 			...typeConverters.Range.toFileRangeRequestArgs(file, range),
 			refactor,
@@ -89,10 +86,10 @@ export default class TypeScriptRefactorProvider implements vscode.CodeActionProv
 
 	constructor(
 		private readonly client: ITypeScriptServiceClient,
-		formattingOptionsManager: FormattingOptionsManager,
+		private readonly formattingOptionsManager: FormattingOptionsManager,
 		commandManager: CommandManager
 	) {
-		const doRefactoringCommand = commandManager.register(new ApplyRefactoringCommand(this.client, formattingOptionsManager));
+		const doRefactoringCommand = commandManager.register(new ApplyRefactoringCommand(this.client));
 		commandManager.register(new SelectRefactorCommand(doRefactoringCommand));
 	}
 
@@ -122,6 +119,8 @@ export default class TypeScriptRefactorProvider implements vscode.CodeActionProv
 		if (!file) {
 			return [];
 		}
+
+		await this.formattingOptionsManager.ensureConfigurationForDocument(document, undefined);
 
 		const args: Proto.GetApplicableRefactorsRequestArgs = typeConverters.Range.toFileRangeRequestArgs(file, rangeOrSelection);
 		try {
