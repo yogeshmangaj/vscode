@@ -134,6 +134,7 @@ export class AppInsightsAppender implements ITelemetryAppender {
 		}
 		data = mixin(data, this._defaultData);
 		let { properties, measurements } = AppInsightsAppender._getData(data);
+		console.log(eventName, data);
 		this._aiClient.trackEvent(this._eventPrefix + '/' + eventName, properties, measurements);
 	}
 
