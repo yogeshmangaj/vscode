@@ -3,11 +3,11 @@
 	"tasks": [
 		{
 			"type": "npm",
-			"script": "compile",
-			"problemMatcher": "$tsc-watch",
+			"script": "watch",
+			"problemMatcher": "$gulp-tsc",
 			"isBackground": true,
 			"presentation": {
-				"reveal": "never"
+				"reveal": "always"
 			},
 			"group": {
 				"kind": "build",
