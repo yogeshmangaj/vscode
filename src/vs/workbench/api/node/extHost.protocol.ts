@@ -749,7 +749,7 @@ export interface LocationDto {
 }
 
 export interface DefinitionLinkDto {
-	origin: IRange;
+	origin?: IRange;
 	uri: UriComponents;
 	range: IRange;
 	selectionRange?: IRange;
